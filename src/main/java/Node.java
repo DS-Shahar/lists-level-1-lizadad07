@@ -33,6 +33,7 @@ public class Node<T> {
   }
 
   public String toString() {
+    //    return  value +  " ==> " + "\n"+ next;
     return value + " ==> " + next;
   }
 }
