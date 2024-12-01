@@ -136,7 +136,7 @@ public class Main {
         	return false;
         if (current.getValue()==x)
         	return true;
-        ifNumIsInListRec(current.getNext(), x) ;
+        return ifNumIsInListRec(current.getNext(), x) ;
  
     }
 	
