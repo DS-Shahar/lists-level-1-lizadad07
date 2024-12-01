@@ -129,6 +129,16 @@ public class Main {
         }
         return false;
     }
+
+	public static boolean ifNumIsInListRec(Node<Integer> current, int x) {
+
+        if (current == null) 
+        	return false;
+        if (current.getValue()==x)
+        	return true;
+        ifNumIsInListRec(current.getNext(), x) ;
+ 
+    }
 	
 	
 	public static Node<Integer> delList(Node<Integer> h, int x) {
