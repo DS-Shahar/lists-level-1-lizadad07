@@ -47,6 +47,18 @@ public class Main {
 //		System.out.println(h);
 		// ----seif 7---
 		System.out.println(delListByMicum(h,1));
+
+		//------seif 8--------
+		Node <Integer> n13 = new Node<Integer> (31);
+		Node <Integer> n14 = new Node<Integer> (48);
+		Node <Integer> n15 = new Node<Integer> (54);
+		
+		n13.setNext(n14);
+		n14.setNext(n15);
+		Node <Integer> h2 = n13;
+		System.out.println(recL1InL2(h,h2));
+		//------seif 9--------
+		L1InL2(h,h2);
 		
 	}
 
@@ -177,5 +189,52 @@ public class Main {
 			}
 		return h.getNext();			
 		}
+
+	
+	private static boolean recL1InL2(Node<Integer> L1, Node<Integer> L2) {
+	    if (L1 == null) {
+	        return true;
+	    }
+
+	    if (!contains(L1.getValue(), L2)) {
+	        // Current L1 value not found in L2
+	        return false;
+	    }
+
+	    // checks the rest of L1
+	    return recL1InL2(L1.getNext(), L2);
+	}
+
+	// Function to check if a value exists in list L2
+	private static boolean contains(int value, Node<Integer> L2) {
+	    while (L2 != null) {
+	        if (L2.getValue() == value) {
+	            return true;
+	        }
+	        L2 = L2.getNext();
+	    }
+	    return false;
+	}
+	
+	
+	public static void L1InL2(Node<Integer> L1, Node<Integer> L2) {
+		Node<Integer> p1 = new Node<Integer>(-1,L1);
+		
+	
+		while (p1.hasNext()) {
+			Node<Integer> p2 = new Node<Integer>(-1,L2);
+			while (p2.hasNext()) {
+				if (p1.getNext().getValue()==p2.getNext().getValue()) {
+					System.out.println(p1.getNext().getValue());
+					
+				}
+				p2=p2.getNext();
+			}
+
+			p1=p1.getNext();
+
+		}
+
+}
 }
 
