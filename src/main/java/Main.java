@@ -33,9 +33,11 @@ public class Main {
 		Node <Integer> n10 = new Node<Integer> (31);
 		Node <Integer> n11 = new Node<Integer> (48);
 		Node <Integer> n12 = new Node<Integer> (54);
+
 		
 		n10.setNext(n11);
 		n11.setNext(n12);
+
 //		
 //		onlyEvenNumbers(n10);
 		// ----- seif 5-----
@@ -45,20 +47,27 @@ public class Main {
 		Node <Integer> h = n10;
 //		h= delList(h,31);
 //		System.out.println(h);
-		// ----seif 7---
-		System.out.println(delListByMicum(h,1));
-
+		//------seif 7--------
+//		System.out.println(delListByMicum(h,1)); 
+		
 		//------seif 8--------
-		Node <Integer> n13 = new Node<Integer> (31);
-		Node <Integer> n14 = new Node<Integer> (48);
-		Node <Integer> n15 = new Node<Integer> (54);
+		Node <Integer> n13 = new Node<Integer> (55);
+		Node <Integer> n14 = new Node<Integer> (54);
+		Node <Integer> n15 = new Node<Integer> (48);
+		Node <Integer> n16 = new Node<Integer> (31);
 		
 		n13.setNext(n14);
 		n14.setNext(n15);
+		n15.setNext(n16);
+		
 		Node <Integer> h2 = n13;
 		System.out.println(recL1InL2(h,h2));
 		//------seif 9--------
-		L1InL2(h,h2);
+		//L1InL2(h,h2);
+		//------seif 10--------
+		//System.out.println(L1InL2List(h,h2));
+		//------seif 11--------
+		System.out.println(L1DelL2(h,h2));
 		
 	}
 
@@ -103,11 +112,10 @@ public class Main {
     public static void printList(Node<Integer> head) {
         Node<Integer> current = head;
         while (current != null) {
-		
         	if (current.getNext()!=null) {
             System.out.print(current.getValue() + " ==> ");
             current = current.getNext();
-            }
+        	}
         	else {
         		System.out.print(current.getValue());
                 current = current.getNext();
@@ -141,16 +149,6 @@ public class Main {
         }
         return false;
     }
-
-	public static boolean ifNumIsInListRec(Node<Integer> current, int x) {
-
-        if (current == null) 
-        	return false;
-        if (current.getValue()==x)
-        	return true;
-        return ifNumIsInListRec(current.getNext(), x) ;
- 
-    }
 	
 	
 	public static Node<Integer> delList(Node<Integer> h, int x) {
@@ -176,7 +174,9 @@ public class Main {
 		int i = 1;
 		h=p;
 		Node<Integer> t;
-	
+		
+
+		
 		while (p.hasNext()) {
 			if (i==x){
 				t=p.getNext();
@@ -189,8 +189,11 @@ public class Main {
 			}
 		return h.getNext();			
 		}
-
 	
+	
+
+
+	// Helper function
 	private static boolean recL1InL2(Node<Integer> L1, Node<Integer> L2) {
 	    if (L1 == null) {
 	        return true;
@@ -201,11 +204,11 @@ public class Main {
 	        return false;
 	    }
 
-	    // checks the rest of L1
+	    // Tail recursive call to check the rest of L1
 	    return recL1InL2(L1.getNext(), L2);
 	}
 
-	// Function to check if a value exists in list L2
+	// Function to check if a value exists in the list L2
 	private static boolean contains(int value, Node<Integer> L2) {
 	    while (L2 != null) {
 	        if (L2.getValue() == value) {
@@ -234,7 +237,73 @@ public class Main {
 			p1=p1.getNext();
 
 		}
+	}
+	
+	public static Node<Integer> L1InL2List(Node<Integer> L1, Node<Integer> L2) {
+	    // Create a dummy node to start the new list
+	    Node<Integer> dummy = new Node<>(null); 
+	    Node<Integer> current = dummy; // Pointer to the last node in the new list
+
+	    // Iterate over L1
+	    while (L1 != null) {
+	        // Check if the value of L1 exists in L2
+	        Node<Integer> p2 = L2;
+	        boolean found = false;
+
+	        while (p2 != null && !found) {
+	            if (L1.getValue().equals(p2.getValue())) {
+	                found = true; // Value exists in L2
+	            }
+	            p2 = p2.getNext();
+	        }
+
+	        // If found, add it to the new list
+	        if (found) {
+	            current.setNext(new Node<>(L1.getValue())); // Append the value to the result list
+	            current = current.getNext();
+	        }
+
+	        L1 = L1.getNext(); // Move to the next node in L1
+	    }
+
+	    // Return the new list starting from the first real node
+	    return dummy.getNext();
+	}
+	
+	public static Node<Integer> L1DelL2(Node<Integer> L1, Node<Integer> L2) {
+	    // Create a dummy node to simplify removal of the head node if necessary
+	    Node<Integer> dummy = new Node<>(null, L1); 
+	    Node<Integer> prev = dummy; // Pointer to the previous node
+	    Node<Integer> current = L1; // Pointer to the current node
+
+	    // Iterate through L1
+	    while (current != null) {
+	        // Check if the current node value exists in L2
+	        Node<Integer> p2 = L2;
+	        boolean found = false;
+
+	        while (p2 != null && !found) {
+	            found = current.getValue().equals(p2.getValue());
+	            p2 = p2.getNext();
+	        }
+
+	        if (found) {
+	            // Remove the current node
+	            prev.setNext(current.getNext());
+	            current.setNext(null); // Detach the current node
+	        } else {
+	            // Move the prev pointer forward if no deletion occurred
+	            prev = current;
+	        }
+
+	        // Move the current pointer forward
+	        current = prev.getNext();
+	    }
+
+	    return dummy.getNext();
+	}
+
 
 }
-}
+	
 
