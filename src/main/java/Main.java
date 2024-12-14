@@ -240,11 +240,9 @@ public class Main {
 	}
 	
 	public static Node<Integer> L1InL2List(Node<Integer> L1, Node<Integer> L2) {
-	    // Create a dummy node to start the new list
 	    Node<Integer> dummy = new Node<>(null); 
-	    Node<Integer> current = dummy; // Pointer to the last node in the new list
+	    Node<Integer> current = dummy; 
 
-	    // Iterate over L1
 	    while (L1 != null) {
 	        // Check if the value of L1 exists in L2
 	        Node<Integer> p2 = L2;
@@ -266,17 +264,15 @@ public class Main {
 	        L1 = L1.getNext(); // Move to the next node in L1
 	    }
 
-	    // Return the new list starting from the first real node
 	    return dummy.getNext();
 	}
 	
 	public static Node<Integer> L1DelL2(Node<Integer> L1, Node<Integer> L2) {
-	    // Create a dummy node to simplify removal of the head node if necessary
 	    Node<Integer> dummy = new Node<>(null, L1); 
-	    Node<Integer> prev = dummy; // Pointer to the previous node
-	    Node<Integer> current = L1; // Pointer to the current node
+	    Node<Integer> prev = dummy; 
+	    Node<Integer> current = L1; 
 
-	    // Iterate through L1
+		
 	    while (current != null) {
 	        // Check if the current node value exists in L2
 	        Node<Integer> p2 = L2;
@@ -292,7 +288,6 @@ public class Main {
 	            prev.setNext(current.getNext());
 	            current.setNext(null); // Detach the current node
 	        } else {
-	            // Move the prev pointer forward if no deletion occurred
 	            prev = current;
 	        }
 
