@@ -1,0 +1,19 @@
+package personsList;
+
+import java.util.Scanner;
+
+
+public class Main {
+	static Scanner input = new Scanner(System.in);
+	public static void main(String []args) {
+		Person p1 = new Person ("Shani","Eyal");
+		Person p2 = new Person("Shay","Samu");
+		Person p3 = new Person("Gay","Lum");
+		
+		Node <Person> h1 = new Node<Person> (p1);
+		Node <Person> h2 = new Node<Person> (p2);
+		Node <Person> h3 = new Node<Person> (p3);
+
+}
+	
+}
