@@ -103,9 +103,7 @@ public class Main {
             num = input.nextInt();
             newNode = new Node<>(num);
         }
-        return head;
-
-		
+        return head;	
 	}
 	
 	// Method to print the list
