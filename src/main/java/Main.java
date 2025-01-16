@@ -173,8 +173,6 @@ public class Main {
 		h=p;
 		Node<Integer> t;
 		
-
-		
 		while (p.hasNext()) {
 			if (i==x){
 				t=p.getNext();
@@ -189,8 +187,6 @@ public class Main {
 		}
 	
 	
-
-
 	// Helper function
 	private static boolean recL1InL2(Node<Integer> L1, Node<Integer> L2) {
 	    if (L1 == null) {
@@ -221,7 +217,6 @@ public class Main {
 	public static void L1InL2(Node<Integer> L1, Node<Integer> L2) {
 		Node<Integer> p1 = new Node<Integer>(-1,L1);
 		
-	
 		while (p1.hasNext()) {
 			Node<Integer> p2 = new Node<Integer>(-1,L2);
 			while (p2.hasNext()) {
@@ -233,7 +228,6 @@ public class Main {
 			}
 
 			p1=p1.getNext();
-
 		}
 	}
 	
@@ -258,10 +252,8 @@ public class Main {
 	            current.setNext(new Node<>(L1.getValue())); // Append the value to the result list
 	            current = current.getNext();
 	        }
-
 	        L1 = L1.getNext(); // Move to the next node in L1
 	    }
-
 	    return dummy.getNext();
 	}
 	
@@ -295,8 +287,6 @@ public class Main {
 
 	    return dummy.getNext();
 	}
-
-
 }
 	
 
